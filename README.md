@@ -3,6 +3,7 @@
 Harjoitustyönä tehtävä tietokantasovellus, jonka avulla voi seurata oman kehon kunnon muutoksia erilaisilla mittareilla. Aluksi luodaan luodaan mittaristo ja raportit kehonkoostumuksen seuraamiseen. Myöhemmin lisätään mahdollisuus harjoitussuoritusten tallettamiseen ja tarkasteluun.
 
 [Linkki raakilesovellukseen](https://tsoha-kehokuntoon.herokuapp.com/)
+Fuksiläppärittömyys tuotti jälleen harmaita hiuksia ja tunteja kului etenkin PostgreSQL:n asennuksessa. Kurssin ohjeistuksen tulisi ottaa paremmin huomioon se, ettei kaikilla ole fuksiläpäriä tai vahvaa kokemusta Linux-ympäristöstä.
 
 * Sovelluksella voi seurata monipuolisesti harjoittelua ja kehon tilaa 
 * Käyttäjä voi olla peruskäyttäjä, ryhmänvetäjä tai ylläpitäjä
