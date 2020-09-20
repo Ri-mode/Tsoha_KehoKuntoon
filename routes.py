@@ -11,4 +11,4 @@ def index():
 
 @app.route("/result", methods=["POST"])
 def result():
-    return render_template("result.html",name=request.index["name"], weight=request.index["weight"])
+    return render_template("result.html")#,name=request.index["name"], weight=request.index["weight"])
