@@ -1,4 +1,8 @@
-# Harjoittelu- ja kehonkoostumuspäiväkirja
+# Kehonkoostumuspäiväkirja (ja harjoituspäiväkirja)
+
+Harjoitustyönä tehtävä tietokantasovellus, jonka avulla voi seurata oman kehon kunnon muutoksia erilaisilla mittareilla. Aluksi luodaan luodaan mittaristo ja raportit kehonkoostumuksen seuraamiseen. Myöhemmin lisätään mahdollisuus harjoitussuoritusten tallettamiseen ja tarkasteluun.
+
+[Linkki raakilesovellukseen](https://tsoha-kehokuntoon.herokuapp.com/)
 
 * Sovelluksella voi seurata monipuolisesti harjoittelua ja kehon tilaa 
 * Käyttäjä voi olla peruskäyttäjä, ryhmänvetäjä tai ylläpitäjä
