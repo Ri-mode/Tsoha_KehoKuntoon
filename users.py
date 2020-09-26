@@ -9,7 +9,7 @@ def login(username, password):
     if user == None:
         return False
     else:
-        if check_password_hash(user[0].password):
+        if check_password_hash(user[0],password):
             session["user_id"] = user[1]
             return True
         else:
@@ -30,4 +30,3 @@ def register_normal(username, password):
 
 def user_id():
     return session.get("user_id",0)
-    

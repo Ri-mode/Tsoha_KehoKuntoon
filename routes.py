@@ -1,6 +1,6 @@
 from app import app
-#import visits
-from flask import redirect, render_template, request, session
+from db import db
+from flask import redirect, render_template, request
 import users
 
 @app.route("/")
@@ -10,14 +10,14 @@ def index():
     return render_template("index.html")
     #, counter=counter)
 
-@app.route("/login", methods=["POST"])
+@app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "GET":
-        return render_template("register.html")
+        return render_template("login.html")
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        if users.register(username.password):
+        if users.login(username,password):
             return redirect("/")
         else:
             return render_template("error.html", message="Käyttäjätunnus tai salasana virheellinen!")
@@ -38,7 +38,7 @@ def register():
             return redirect("/")
         else:
             return render_template("error.html", message="Rekisteröinti epäonnistui!")
-            
+
 
 
 @app.route("/result", methods=["POST"])
