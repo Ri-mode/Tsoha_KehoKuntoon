@@ -1,7 +1,7 @@
 <h1>KehoKuntoon-sovellus</h1>
 <br>
 {% if session.user_id %}
-<p>Olet kirjautunut nimellä </p>
+<p>Olet kirjautunut nimellä {{ session.username }} </p>
 <a href="/logout">Kirjaudu ulos</a>
 {% else %}
 <a href="/login">Kirjaudu sisään</a>

@@ -17,6 +17,7 @@ def login():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
+        print("user:", username)
         if users.login(username,password):
             return redirect("/")
         else:
@@ -34,7 +35,10 @@ def register():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        if users.register_normal(username,password):
+        currentweight = request.form["currentweight"]
+        targetweight = request.form["targetweight"]
+        print(username, currentweight, targetweight)
+        if users.register_normal(username,password,currentweight,targetweight):
             return redirect("/")
         else:
             return render_template("error.html", message="Rekisteröinti epäonnistui!")
