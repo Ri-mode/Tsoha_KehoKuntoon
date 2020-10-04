@@ -2,10 +2,19 @@
 
 Harjoitustyönä tehtävä tietokantasovellus, jonka avulla voi seurata oman kehon kunnon muutoksia erilaisilla mittareilla. Aluksi luodaan luodaan mittaristo ja raportit kehonkoostumuksen seuraamiseen. Myöhemmin lisätään mahdollisuus harjoitussuoritusten tallettamiseen ja tarkasteluun.
 
-[Linkki raakilesovellukseen](https://tsoha-kehokuntoon.herokuapp.com/)
+[Sovelluksen tämän hetkinen versio](https://tsoha-kehokuntoon.herokuapp.com/)
 
-Fuksiläppärittömyys tuotti jälleen harmaita hiuksia ja tunteja kului etenkin PostgreSQL:n asennuksessa. Kurssin ohjeistuksen tulisi ottaa paremmin huomioon se, ettei kaikilla ole fuksiläpäriä tai vahvaa kokemusta Linux-ympäristöstä.
+Tulipahan potkittua melko moneen kiveen ennen kuin tämä alkoi edetä. Tällä hetkellä toteutettuna on kirjautuminen, mittaustulosten lisääminen ja hyvin keskeneräinen hakutoiminto.
 
+Koodin kommenteissa, kysymys session-muuttujien määrästä, alustamisesta ja poistamisesta.
+_____
+session["user_id"] = user[1] 
+
+session["username"] = username
+- Voiko session-muuttujia olla useita?
+- Saakohan käyttäjänimen koodata tällä tavoin session aikana käytettäväksi?
+
+______
 * Sovelluksella voi seurata monipuolisesti harjoittelua ja kehon tilaa 
 * Käyttäjä voi olla peruskäyttäjä, ryhmänvetäjä tai ylläpitäjä
 * Käyttäjä voi luoda tunnuksen perustietoineen
