@@ -27,9 +27,10 @@ def logout():
 def register_normal(username, password, currentweight, targetweight):
     hash_code = generate_password_hash(password)
     try:
-        sql = "INSERT INTO users (usertype,username,password,currentweight,targetweight) VALUES \
-              (1,:username,:password,:currentweight,:targetweight)"
-        db.session.execute(sql, {"username":username,"password":hash_code,"currentweight":currentweight,"targetweight":targetweight})
+        sql = "INSERT INTO users (usertype,username,password,currentweight,targetweight,created,modified) VALUES \
+              (1,:username,:password,:currentweight,:targetweight,NOW(),NOW())"
+        db.session.execute(sql, {"username":username,"password":hash_code,"currentweight":currentweight,
+            "targetweight":targetweight})
         db.session.commit()
     except:
         return False
@@ -37,3 +38,6 @@ def register_normal(username, password, currentweight, targetweight):
 
 def user_id():
     return session.get("user_id",0)
+
+def username():
+    return session.get("username",0)
