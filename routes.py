@@ -5,11 +5,8 @@ import users, weights
 
 @app.route("/")
 def index():
-#    visits.add_visit()
-#    counter = visits.get_counter()
     return render_template("index.html")
-    #, counter=counter)
-
+    
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "GET":
@@ -35,10 +32,12 @@ def register():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        currentweight = request.form["currentweight"]
-        targetweight = request.form["targetweight"]
-        print(username, currentweight, targetweight)
-        if users.register_normal(username,password,currentweight,targetweight):
+        current_weight = request.form["currentweight"]
+        target_weight = request.form["targetweight"]
+        height = request.form["height"]
+        if len(username) > 25 or len(password) > 25:
+            return render_template("error.html", message="Käyttäjätunnus tai salasana on yli 25 merkkiä pitkä")
+        if users.register_normal(username, password, current_weight, target_weight, height):
             return redirect("/")
         else:
             return render_template("error.html", message="Rekisteröinti epäonnistui!")

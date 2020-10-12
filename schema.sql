@@ -4,7 +4,8 @@ CREATE TABLE users (
         username TEXT UNIQUE, 
         password TEXT, 
         currentweight FLOAT, 
-        targetweight FLOAT, 
+        targetweight FLOAT,
+        height FLOAT, 
         created TIMESTAMP, 
         modified TIMESTAMP
 );

@@ -12,7 +12,7 @@ def login(username, password):
     else:
         if check_password_hash(user[0],password):
             session["user_id"] = user[1]
-
+# Voiko session-muuttujia olla useita?
 # Saakohan käyttäjänimen koodata tällä tavoin session aikana käytettäväksi?
             session["username"] = username
             return True
@@ -24,13 +24,13 @@ def logout():
 # Tarvitseeko aiemmin luotu username-sessio poistaa?
     del session["username"]
 
-def register_normal(username, password, currentweight, targetweight):
+def register_normal(username,password,current_weight,target_weight,height):
     hash_code = generate_password_hash(password)
     try:
-        sql = "INSERT INTO users (usertype,username,password,currentweight,targetweight,created,modified) VALUES \
-              (1,:username,:password,:currentweight,:targetweight,NOW(),NOW())"
-        db.session.execute(sql, {"username":username,"password":hash_code,"currentweight":currentweight,
-            "targetweight":targetweight})
+        sql = "INSERT INTO users (usertype,username,password,currentweight,targetweight,height,created,modified)" \
+              "VALUES (1,:username,:password,:currentweight,:targetweight,:height,NOW(),NOW())"
+        db.session.execute(sql, {"username":username,"password":hash_code,"currentweight":current_weight,
+            "targetweight":target_weight,"height":height})
         db.session.commit()
     except:
         return False
