@@ -1,12 +1,12 @@
 from db import db
 from flask import session
 
-def add_weight(user_id,weight_now,fat_now,muscle_now):
+def add_weight(user_id, weight_now, fat_now, muscle_now, date):
     try:
         sql = """INSERT INTO weights (user_id,weight_now,fat_now,muscle_now,weight_date,created,modified) 
-                 VALUES (:user_id,:weight_now,:fat_now,:muscle_now,NOW(),NOW(),NOW())"""
+                 VALUES (:user_id,:weight_now,:fat_now,:muscle_now,:weight_date,NOW(),NOW())"""
         db.session.execute(sql, {"user_id":user_id, "weight_now":weight_now, "fat_now":fat_now,
-            "muscle_now":muscle_now})
+            "muscle_now":muscle_now, "weight_date":date})
         db.session.commit()
     except:
         return False
@@ -15,8 +15,16 @@ def add_weight(user_id,weight_now,fat_now,muscle_now):
 def get_weights(user_id):
 #    try:
 #    print("Kokeillaan")
-    sql = "SELECT weight_now FROM weights WHERE user_id=:user_id"
+    sql = "SELECT weight_date,weight_now FROM weights WHERE user_id=:user_id"
     result = db.session.execute(sql, {"user_id":user_id})
     return result.fetchall()
 #    except:
  #       return 0
+
+def check_date(user_id, date):
+    sql = "SELECT 1 FROM weights WHERE user_id=:user_id AND weight_date=:weight_date"
+    result = db.session.execute(sql, {"user_id":user_id, "weight_date":date})
+    if result.fetchone() != None:
+        return True
+    else:
+        return False

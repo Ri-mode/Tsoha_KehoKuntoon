@@ -12,7 +12,7 @@ CREATE TABLE users (
 
 CREATE TABLE weights (
         id SERIAL PRIMARY KEY,
-        user_id INTEGER NOT NULL,
+        user_id INTEGER REFERENCES users,
         weight_now FLOAT,
         fat_now FLOAT,
         muscle_now FLOAT,

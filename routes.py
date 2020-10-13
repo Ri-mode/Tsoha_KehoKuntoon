@@ -61,11 +61,14 @@ def weight():
     if request.method == "GET":
         return render_template("weight.html")
     if request.method == "POST":
+        date = request.form["inputdate"]
         weight_now = request.form["weight"]
         fat_now = request.form["fat"]
         mustcle_now = request.form["muscle"]
-        
-        if weights.add_weight(users.user_id(), weight_now, fat_now, mustcle_now):
+        print(date)
+        if weights.check_date(users.user_id(), date):
+            return render_template("error.html", message="Päivälle on jo merkintä!")
+        if weights.add_weight(users.user_id(), weight_now, fat_now, mustcle_now, date):
             return redirect("/")
         else:
             return render_template("error.html", message="Tietojen lisäys epäonnistui!")
