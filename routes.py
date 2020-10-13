@@ -42,7 +42,19 @@ def register():
         else:
             return render_template("error.html", message="Rekisteröinti epäonnistui!")
 
-
+@app.route("/register_coach", methods=["GET", "POST"])
+def register_coach():
+    if request.method == "GET":
+        return render_template("register_coach.html")
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        if len(username) > 25 or len(password) > 25:
+            return render_template("error.html", message="Käyttäjätunnus tai salasana on yli 25 merkkiä pitkä")
+        if users.register_coach(username, password):
+            return redirect("/")
+        else:
+            return render_template("error.html", message="Rekisteröinti epäonnistui!")
 
 @app.route("/weight", methods=["GET", "POST"])
 def weight():

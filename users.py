@@ -36,6 +36,18 @@ def register_normal(username,password,current_weight,target_weight,height):
         return False
     return login(username, password)
 
+def register_coach(username,password):
+    hash_code = generate_password_hash(password)
+    try:
+        sql = "INSERT INTO users (usertype,username,password,created,modified)" \
+              "VALUES (2,:username,:password,NOW(),NOW())"
+        db.session.execute(sql, {"username":username,"password":hash_code})
+        db.session.commit()
+    except:
+        return False
+    return login(username, password)
+
+
 def user_id():
     return session.get("user_id",0)
 

@@ -1,7 +1,7 @@
 <h1>KehoKuntoon-sovellus</h1>
 <br>
 {% if session.user_id %}
-<p>Olet kirjautunut nimellä {{ session.username }} </p>
+<p>Olet kirjautunut tunnuksella {{ session.username }} </p>
 <a href="/weight">Lisää mittaustiedot</a>
 <br>
 <a href="/result">Hae mittaustiedot</a>
@@ -9,4 +9,8 @@
 <a href="/logout">Kirjaudu ulos</a>
 {% else %}
 <a href="/login">Kirjaudu sisään</a>
+<br>
+<a href="/register">Luo tunnus</a>
+<br>
+<a href="/register_coach">Luo valmentajan tunnus</a>
 {% endif %}
