@@ -1,12 +1,11 @@
 from db import db
 from flask import session
 
-def add_weight(user_id, weight_now, fat_now, muscle_now, date):
+def add_weight(user_id, weight_now, date):
     try:
-        sql = """INSERT INTO weights (user_id,weight_now,fat_now,muscle_now,weight_date,created,modified) 
-                 VALUES (:user_id,:weight_now,:fat_now,:muscle_now,:weight_date,NOW(),NOW())"""
-        db.session.execute(sql, {"user_id":user_id, "weight_now":weight_now, "fat_now":fat_now,
-            "muscle_now":muscle_now, "weight_date":date})
+        sql = """INSERT INTO weights (user_id,weight_now,weight_date,created,modified) 
+                 VALUES (:user_id,:weight_now,:weight_date,NOW(),NOW())"""
+        db.session.execute(sql, {"user_id":user_id, "weight_now":weight_now, "weight_date":date})
         db.session.commit()
     except:
         return False

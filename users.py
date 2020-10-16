@@ -24,12 +24,12 @@ def logout():
 # Tarvitseeko aiemmin luotu username-sessio poistaa?
     del session["username"]
 
-def register_normal(username,password,current_weight,target_weight,height):
+def register_normal(username,password,target_weight,height):
     hash_code = generate_password_hash(password)
     try:
-        sql = "INSERT INTO users (usertype,username,password,currentweight,targetweight,height,created,modified)" \
-              "VALUES (1,:username,:password,:currentweight,:targetweight,:height,NOW(),NOW())"
-        db.session.execute(sql, {"username":username,"password":hash_code,"currentweight":current_weight,
+        sql = """INSERT INTO users (usertype,username,password,targetweight,height,created,modified)
+                 VALUES (1,:username,:password,:targetweight,:height,NOW(),NOW())"""
+        db.session.execute(sql, {"username":username,"password":hash_code,
             "targetweight":target_weight,"height":height})
         db.session.commit()
     except:
@@ -39,8 +39,8 @@ def register_normal(username,password,current_weight,target_weight,height):
 def register_coach(username,password):
     hash_code = generate_password_hash(password)
     try:
-        sql = "INSERT INTO users (usertype,username,password,created,modified)" \
-              "VALUES (2,:username,:password,NOW(),NOW())"
+        sql = """INSERT INTO users (usertype,username,password,created,modified)
+                 VALUES (2,:username,:password,NOW(),NOW())"""
         db.session.execute(sql, {"username":username,"password":hash_code})
         db.session.commit()
     except:

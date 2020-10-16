@@ -38,7 +38,8 @@ def register():
         height = request.form["height"]
         if len(username) > 25 or len(password) > 25:
             return render_template("error.html", message="Käyttäjätunnus tai salasana on yli 25 merkkiä pitkä")
-        if users.register_normal(username, password, current_weight, target_weight, height):
+        if users.register_normal(username, password, target_weight, height):
+            weights.add_weight(users.user_id(), current_weight, date.today())
             return redirect("/")
         else:
             return render_template("error.html", message="Rekisteröinti epäonnistui!")
@@ -64,26 +65,20 @@ def weight():
     if request.method == "POST":
         date_now = request.form["inputdate"]
         weight_now = request.form["weight"]
-        fat_now = request.form["fat"]
-        mustcle_now = request.form["muscle"]
-        #print(date_now)
         if date_now == '':
-            print("päivä puuttuu")
-
             date_now = date.today()
-            print(date_now)
+        else:
+            date_now = date(int(date_now[0:4]), int(date_now[5:7]), int(date_now[8:]))
+        if date_now > date.today():
+            return render_template("error.html", message="Et voi lisätä merkintää tulevaisuuteen!")
         if weights.check_date(users.user_id(), date_now):
             return render_template("error.html", message="Antamallesi päivälle on jo merkintä!")
-        if weights.add_weight(users.user_id(), weight_now, fat_now, mustcle_now, date_now):
+        if weights.add_weight(users.user_id(), weight_now, date_now):
             return redirect("/")
         else:
             return render_template("error.html", message="Tietojen lisäys epäonnistui!")
 
 @app.route("/result", methods=["GET"])
 def result():
-#    print(users.user_id())
     list = weights.get_weights(users.user_id())
-    for row in list:
-        print(row)
-    print(list)
     return render_template("result.html", messages=list)
