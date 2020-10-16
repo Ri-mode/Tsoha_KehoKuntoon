@@ -51,9 +51,13 @@ def register_coach():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
+        current_weight = request.form["currentweight"]
+        target_weight = request.form["targetweight"]
+        height = request.form["height"]
         if len(username) > 25 or len(password) > 25:
             return render_template("error.html", message="Käyttäjätunnus tai salasana on yli 25 merkkiä pitkä")
-        if users.register_coach(username, password):
+        if users.register_coach(username, password, target_weight, height):
+            weights.add_weight(users.user_id(), current_weight, date.today())
             return redirect("/")
         else:
             return render_template("error.html", message="Rekisteröinti epäonnistui!")

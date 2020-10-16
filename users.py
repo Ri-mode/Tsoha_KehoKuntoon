@@ -27,8 +27,8 @@ def logout():
 def register_normal(username,password,target_weight,height):
     hash_code = generate_password_hash(password)
     try:
-        sql = """INSERT INTO users (usertype,username,password,targetweight,height,created,modified)
-                 VALUES (1,:username,:password,:targetweight,:height,NOW(),NOW())"""
+        sql = """INSERT INTO users (usertype,username,password,targetweight,height,created,modified,visible)
+                 VALUES (1,:username,:password,:targetweight,:height,NOW(),NOW(),1)"""
         db.session.execute(sql, {"username":username,"password":hash_code,
             "targetweight":target_weight,"height":height})
         db.session.commit()
@@ -36,12 +36,13 @@ def register_normal(username,password,target_weight,height):
         return False
     return login(username, password)
 
-def register_coach(username,password):
+def register_coach(username,password, target_weight,height):
     hash_code = generate_password_hash(password)
     try:
-        sql = """INSERT INTO users (usertype,username,password,created,modified)
-                 VALUES (2,:username,:password,NOW(),NOW())"""
-        db.session.execute(sql, {"username":username,"password":hash_code})
+        sql = """INSERT INTO users (usertype,username,password,targetweight,height,created,modified,visible)
+                 VALUES (2,:username,:password,:targetweight,:height,NOW(),NOW(),2)"""
+        db.session.execute(sql, {"username":username,"password":hash_code,
+            "targetweight":target_weight,"height":height})
         db.session.commit()
     except:
         return False
