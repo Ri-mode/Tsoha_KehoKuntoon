@@ -1,2 +1,6 @@
 Tallennetut punnitustulokset:
-{{ messages }}
+<br>
+{% for message in messages %}
+{{ message[0] }} : {{ message[1] }} kg
+<br>
+{% endfor %}

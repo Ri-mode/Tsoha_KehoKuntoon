@@ -15,7 +15,7 @@ def add_weight(user_id, weight_now, fat_now, muscle_now, date):
 def get_weights(user_id):
 #    try:
 #    print("Kokeillaan")
-    sql = "SELECT weight_date,weight_now FROM weights WHERE user_id=:user_id"
+    sql = "SELECT weight_date,weight_now FROM weights WHERE user_id=:user_id ORDER BY weight_date"
     result = db.session.execute(sql, {"user_id":user_id})
     return result.fetchall()
 #    except:
