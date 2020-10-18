@@ -1,19 +1,16 @@
 # Kehonkoostumuspäiväkirja (ja harjoituspäiväkirja)
 
-Harjoitustyönä tehtävä tietokantasovellus, jonka avulla voi seurata oman kehon kunnon muutoksia erilaisilla mittareilla. Aluksi luodaan luodaan mittaristo ja raportit kehonkoostumuksen seuraamiseen. Myöhemmin lisätään mahdollisuus harjoitussuoritusten tallettamiseen ja tarkasteluun.
+Harjoitustyönä tehtävä tietokantasovellus, jonka avulla voi seurata oman kehon kunnon muutoksia erilaisilla mittareilla. Aluksi luodaan luodaan mittaristo ja raportit painon seuraamiseen. Myöhemmin lisätään mahdollisuus harjoitussuoritusten tallettamiseen ja tarkasteluun.
 
 [Sovelluksen tämän hetkinen versio](https://tsoha-kehokuntoon.herokuapp.com/)
 
-Tulipahan potkittua melko moneen kiveen ennen kuin tämä alkoi edetä. Tällä hetkellä toteutettuna on kirjautuminen, mittaustulosten lisääminen ja hyvin keskeneräinen hakutoiminto.
+Kantapään kautta oppii varmimmin, vaikka aikaa kuluu melkoisesti!
 
-Koodin kommenteissa, kysymys session-muuttujien määrästä, alustamisesta ja poistamisesta.
-_____
-session["user_id"] = user[1] 
+Sovellukseen on toteutettu painon tallennus ja tallennettujen tietojen tarkastelu. 
+Tietokantaan on lisätty valmentajatunnus coach ja valmennettava trainer, joiden salasana on pass.  
+Käyttäjätunnukselle trainer on lisätty valmentajaksi coach, joka pystyy kirjautuneena tarkastelemaan valmennettavan [profiilia](https://tsoha-kehokuntoon.herokuapp.com/profile/2)
 
-session["username"] = username
-- Voiko session-muuttujia olla useita?
-- Saakohan käyttäjänimen koodata tällä tavoin session aikana käytettäväksi?
-
+Paljon jäi tehtäväksi seuraavissa sprinteissä. Harjoitustyö on ollut opettava ja sen aikana lisääntyneellä kokemuksella on hyvä jatkaa.
 ______
 * Sovelluksella voi seurata monipuolisesti harjoittelua ja kehon tilaa 
 * Käyttäjä voi olla peruskäyttäjä, ryhmänvetäjä tai ylläpitäjä
