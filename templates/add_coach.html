@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block title %}Lisää valmentaja{% endblock %}
+{% block content %}
+<h2>Lisää valmentaja</h2>
+<p>
+<form action="/add_coach" method="POST">
+<br>
+Lisää valmentaja: 
+<input type="number" name="coach_id" value=1>
+<br>
+
+<input type="submit" value="Tallenna">
+</form>
+{% endblock %}

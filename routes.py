@@ -65,7 +65,8 @@ def register_coach():
 @app.route("/weight", methods=["GET", "POST"])
 def weight():
     if request.method == "GET":
-        return render_template("weight.html")
+        last_weight = weights.get_last(users.user_id())
+        return render_template("weight.html", last_weight=last_weight[0])
     if request.method == "POST":
         date_now = request.form["inputdate"]
         weight_now = request.form["weight"]
@@ -86,3 +87,47 @@ def weight():
 def result():
     list = weights.get_weights(users.user_id())
     return render_template("result.html", messages=list)
+
+@app.route("/controlpanel", methods=["GET"])
+def controlpanel():
+    return render_template("controlpanel.html")
+
+@app.route("/add_coach", methods=["GET", "POST"])
+def add_coach():
+    if request.method == "GET":
+        return render_template("add_coach.html")
+    if request.method == "POST":
+        coach = request.form["coach_id"]
+    if users.is_coach(coach):
+        if users.add_coach(coach, users.user_id()):
+            return redirect("/")
+        else:
+            return render_template("error.html", message="Valmentajan lisäys epäonnistui")
+    else:
+        return render_template("error.html", message="Antamasi käyttäjä ei ole valmentaja")
+
+
+@app.route("/profile/<int:id>", methods=["GET"])
+def profile(id):
+    allow = False
+    if users.user_id == 0:
+        redirect("/")
+    if users.is_user() and users.user_id() == id:
+        allow = True
+    elif users.is_user():
+        sql = "SELECT 1 FROM coaches WHERE trainer_id=:trainer_id AND coach_id=:coach_id AND visible=1"
+        result = db.session.execute(sql, {"trainer_id":id, "coach_id":users.user_id()})
+        if result.fetchone() != None:
+            allow = True
+    if not allow:
+        return render_template("error.html", message="Ei oikeutta nähdä sivua!")
+    
+    weight_now = weights.get_last(id)
+    user = users.user_info(id)
+    bmi = (10000 * weight_now[0] / (user[2]*user[2]))
+    bmi_string = float("{:.2f}".format(bmi))
+    to_target = float("{:.2f}".format(weight_now[0] - user[1]))
+    
+    return render_template("profile.html", username=user[0], weight_now=weight_now[0], weight_target=user[1],
+        to_target=to_target, bmi=bmi_string)
+

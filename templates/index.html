@@ -1,12 +1,17 @@
-<h1>KehoKuntoon-sovellus</h1>
-<br>
+{% extends "layout.html" %}
+{% block title %}Etusivu{% endblock %}
+{% block content %}
+<h2>Etusivu</h2>
 {% if session.user_id %}
-<p>Olet kirjautunut tunnuksella {{ session.username }} </p>
+<p>Olet kirjautunut tunnuksella {{ session.username }}</p>
 <a href="/weight">Lisää mittaustiedot</a>
+<br>
+<a href="/profile/{{ session.user_id }}">Siirry tietoihisi</a>
 <br>
 <a href="/result">Hae mittaustiedot</a>
 <br>
-<a href="/logout">Kirjaudu ulos</a>
+<a href="/controlpanel">Asetukset</a>
+<br>
 {% else %}
 <a href="/login">Kirjaudu sisään</a>
 <br>
@@ -14,3 +19,4 @@
 <br>
 <a href="/register_coach">Luo valmentajan tunnus</a>
 {% endif %}
+{% endblock %}

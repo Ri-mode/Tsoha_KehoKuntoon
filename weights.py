@@ -11,6 +11,11 @@ def add_weight(user_id, weight_now, date):
         return False
     return True
 
+def get_last(user_id):
+    sql = "SELECT weight_now FROM weights WHERE user_id=:user_id ORDER BY weight_date DESC LIMIT 1"
+    result = db.session.execute(sql, {"user_id":user_id})
+    return result.fetchone()
+
 def get_weights(user_id):
 #    try:
 #    print("Kokeillaan")

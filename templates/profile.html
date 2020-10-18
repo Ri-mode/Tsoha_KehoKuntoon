@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block title %}Profiili{% endblock %}
+{% block content %}
+<h2>Käyttäjäprofiili</h2>
+Käyttäjätunnus: {{ username }} <br>
+Paino: {{ weight_now }} kg <br>
+Tavoite paino: {{ weight_target }} kg <br>
+Tavoitteeseen: {{ to_target }} kg <br>
+BMI: {{ bmi }} <br>
+{% endblock %}

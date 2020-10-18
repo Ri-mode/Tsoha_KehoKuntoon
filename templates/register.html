@@ -1,3 +1,7 @@
+{% extends "layout.html" %}
+{% block title %}Käyttäjän rekisteröinti{% endblock %}
+{% block content %}
+<h2>Uuden käyttäjän luomti</h2>
 <form action="/register" method="POST">
 Käyttäjätunnus: <input type="text" name="username">
 <p>
@@ -11,3 +15,4 @@ Pituutesi: <input max="250" min="100" step="1" type="number" name="height" value
 <br>
 <input type="submit" value="Luo tunnus">
 </form>
+{% endblock %}

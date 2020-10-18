@@ -1,3 +1,7 @@
+{% extends "layout.html" %}
+{% block title %}Punnitus{% endblock %}
+{% block content %}
+<h2>Punnitustiedot</h2>
 Lisää mittaustiedot:
 <p>
 <form action="/weight" method="POST">
@@ -6,8 +10,9 @@ Anna päivämäärä:
 <input type="date" name="inputdate">
 <br>
 Anna painosi: 
-<input max="150" min="10" step="0.1" type="number" name="weight" value="75">
+<input max="150" min="10" step="0.1" type="number" name="weight" value={{ last_weight }}>
 <br>
 
 <input type="submit" value="Tallenna">
 </form>
+{% endblock %}
