@@ -23,8 +23,11 @@ def login():
 
 @app.route("/logout")
 def logout():
-    users.logout()
-    return redirect("/")
+    if users.user_id() == 0:
+        return redirect("/")
+    else:
+        users.logout()
+        return redirect("/")
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
